@@ -3,14 +3,16 @@ const productContainer = document.getElementById("products");
 
 function createNameOfProduct(productItem){
     const nameOfElement = document.createElement("h2");
-    nameOfElement.setAttribute('id', 'name');
+    /* nameOfElement.setAttribute('id', 'name'); */
     nameOfElement.innerHTML = productItem.name;
     return nameOfElement
 }
 
 function createImageOfProduct(productItem){
     const imageOfElement = document.createElement("img");
-    imageOfElement.setAttribute('id', 'image');
+    /* imageOfElement.setAttribute('id', 'image'); */
+    imageOfElement.setAttribute('data-price', productItem.price);
+    imageOfElement.setAttribute('data-name', productItem.name);
     imageOfElement.src = productItem.images[0].src["small"];
     imageOfElement.alt = productItem.images[0]["alt"];
     return imageOfElement
@@ -24,7 +26,7 @@ function createDescriptionOfElement(productItem){
 
 function createPriceOfElement(productItem){
     const priceOfElement = document.createElement("p");
-    priceOfElement.setAttribute('id', 'price');
+    /* priceOfElement.setAttribute('id', 'price'); */
     priceOfElement.innerHTML = `Price: ${productItem.price}`
     return priceOfElement
 }
@@ -43,7 +45,7 @@ function createStockOfElement(productItem){
 
 function renderProductItem(productItem){
     const productItemElement = document.createElement("div");
-    const br = document.createElement("br")
+    const br = document.createElement("br");
 
     productItemElement.appendChild(createNameOfProduct(productItem));
     productItemElement.appendChild(createImageOfProduct(productItem));
@@ -75,27 +77,23 @@ getProductData();
 
 class Customer{
     constructor(){
-        this.transactions = [];
+        this.purchases = [];
+        this.total = 0;
     }
-    addTransaction(){
-        this.transactions.push(transactionObject);
-    }
+    
     getTotalSpent(){
-        let sum = 0;
-        this.transactions.forEach(transaction =>{
-            sum += transaction.total;
-        })
-        return sum
+        this.total += price;
     }
-    update
+
+    updateMessage(){
+        const totalSum = document.getElementById("total");
+        totalSum.innerHTML = `Total: ${this.total}`;
+    }
 }
 
 const customer = new Customer();
-const imageButton = document.getElementById("image");
-
-
-imageButton.addEventListener("click", () => {
-    const price = productItem.price;
-    let total = 0;
-    total += parseInt(price);
-})
+document.querySelectorAll("data-price").forEach(imageButton => 
+    imageButton.addEventListener("click", (e) => {
+        customer.updateMessage(e.target.getAttribute("data-name"), parseInt(e.target.getAttribute("data-price")))
+    })
+);
