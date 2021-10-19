@@ -3,53 +3,45 @@
 
     const productsAPIURL = "https://mock-data-api.firebaseio.com/webb21/products.json";
 
-    const totalShoppingSum = document.getElementById ("totalSum");
     const shoppingListContainer = document.getElementById("shoppingCartList");
     const productListContainer = document.getElementById("products");
 
     function createProductName(productItem){
-        const elementName = document.createElement("h2");
-        elementName.innerHTML = productItem.name;
-        return elementName
+        const elName = document.createElement("h2");
+        elName.innerHTML = productItem.name;
+        return elName
     }
 
     function createProductImage(productItem){
-        const elementImage = document.createElement("img");
-        /* elementImage.setAttribute("data-price", productItem.price);
-        elementImage.setAttribute("data-name", productItem.name);*/
-        elementImage.src = productItem.images[0].src["small"];
-        elementImage.alt = productItem.images[0]["alt"];
-        return elementImage
+        const elImage = document.createElement("img");
+        elImage.src = productItem.images[0].src["small"];
+        elImage.alt = productItem.images[0]["alt"];
+        return elImage
     }
 
-    /* function createEl(html){
+    function createEl(html){
         const el = document.createElement("p");
         el.innerHTML = html;
-        return item;
-    } */
+        return el;
+    } 
 
     function createElementDescription(productItem){
-        const elementDescription = document.createElement("p");
-        elementDescription.innerHTML = productItem.description;
-        return elementDescription
+        return createEl(productItem.description);
     }
 
     function createElementPrice(productItem){
-        const elementPrice = document.createElement("p");
-        elementPrice.innerHTML = `Price: ${productItem.price}`
-        return elementPrice
+        const elPrice = `Price: ${productItem.price}`;
+        return createEl(elPrice);
     }
 
     function createElementRating(productItem){
-        const elementRating = document.createElement("p");
-        elementRating.innerHTML = `Rating: ${productItem.rating || "0"}`;
-        return elementRating
+        const elRating = `Rating: ${productItem.rating || "0"}`;
+        return createEl(elRating);
     }
 
     function createElementStock(productItem){
-        const elementStock = document.createElement("p");
-        elementStock.innerHTML = `Stock: ${productItem.stock}`;
-        return elementStock
+        const elStock = `Stock: ${productItem.stock}`;
+        return createEl(elStock);
     }
 
     function createButtonBuy(productItem){
