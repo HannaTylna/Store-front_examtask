@@ -3,6 +3,9 @@
 
     const productsAPIURL = "https://mock-data-api.firebaseio.com/webb21/products.json";
 
+    const totalSum = document.getElementById("totalSum");
+    const totalSumParagragh = document.getElementById("totalSumParagragh");
+    const cartHeader = document.getElementById("cartHeader");
     const shoppingListContainer = document.getElementById("shoppingCartList");
     const productListContainer = document.getElementById("products");
 
@@ -46,16 +49,16 @@
 
     function createButtonBuy(productItem){
         const button = document.createElement("button");
-        /* button.setAttribute("style", "border: 0 / none"); */ // required if the image acts as a button
-        
+        /* button.setAttribute("style", "border-style: none"); */ // required if the image acts as a button
         button.innerText = "Buy"; // Not required if the image acts as a button
 
         button.addEventListener("click", () => {
-            
+            cartHeader.innerText = "Shopping cart";
+            if(productItem.stock > 0)
             customer.addPurchase({name: productItem.name, price: productItem.price});
             customer.outputPurchaseInformation();
         })
-        /* button.appendChild(createImageOfProduct(productItem)); */ // required if the image acts as a button
+        /* button.appendChild(createProductImage(productItem)); */ // required if the image acts as a button
         
         return button
     }
@@ -66,14 +69,14 @@
         const br = document.createElement("br");
 
         productItemElement.appendChild(createProductName(productItem));
-        /* productItemElement.appendChild(createButtonBuy(productItem)); */ // required if the image acts as a button
+        /* productItemElement.appendChild(createButtonBuy(productItem));  */// required if the image acts as a button
         productItemElement.appendChild(createProductImage(productItem)); // Not required if the image acts as a button
         productItemElement.appendChild(createElementDescription(productItem));
         productItemElement.appendChild(br);
         productItemElement.appendChild(createElementPrice(productItem));
         productItemElement.appendChild(createElementRating(productItem));
         productItemElement.appendChild(createElementStock(productItem));
-        productItemElement.appendChild(createButtonBuy(productItem));  // Not required if the image acts as a button
+        productItemElement.appendChild(createButtonBuy(productItem));// Not required if the image acts as a button
 
         productListContainer.appendChild(productItemElement);
     }
@@ -91,9 +94,6 @@
     }
 
     getProductData();
-
-    const totalSumParagragh = document.getElementById("totalSumParagragh");
-    const header = document.getElementById("cartHeader");
 
     class Customer{
         constructor(){
@@ -122,10 +122,9 @@
             const purchase = this.getLatestPurchase();
 
             totalSumParagragh.innerHTML = `Total: ${this.getTotalSpent()}`
-            header.innerText = "Shopping cart";
             shoppingListParagragh.innerHTML += `${purchase.name} - ${purchase.price} <br> <br>`;
             
-            totalSumParagragh.appendChild(header);
+            totalSum.appendChild(totalSumParagragh);
             shoppingListContainer.appendChild(shoppingListParagragh);
         }
     }
