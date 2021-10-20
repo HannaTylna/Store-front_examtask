@@ -19,6 +19,7 @@
         const elImage = document.createElement("img");
         elImage.src = productItem.images[0].src["small"];
         elImage.alt = productItem.images[0]["alt"];
+        elImage.width = "500";
         return elImage
     }
 
@@ -49,7 +50,7 @@
 
     function createButtonBuy(productItem){
         const button = document.createElement("button");
-        /* button.setAttribute("style", "border-style: none"); */ // required if the image acts as a button
+       /*  button.setAttribute("style", "border-style: none"); */ // required if the image acts as a button
         button.innerText = "Buy"; // Not required if the image acts as a button
 
         button.addEventListener("click", () => {
@@ -67,6 +68,7 @@
         const productItemElement = document.createElement("div");
         productItemElement.setAttribute("data-rating", productItem.rating || 0);
         const br = document.createElement("br");
+        const hr = document.createElement("hr");
 
         productItemElement.appendChild(createProductName(productItem));
         /* productItemElement.appendChild(createButtonBuy(productItem));  */// required if the image acts as a button
@@ -77,6 +79,7 @@
         productItemElement.appendChild(createElementRating(productItem));
         productItemElement.appendChild(createElementStock(productItem));
         productItemElement.appendChild(createButtonBuy(productItem));// Not required if the image acts as a button
+        productItemElement.appendChild(hr);
 
         productListContainer.appendChild(productItemElement);
     }
