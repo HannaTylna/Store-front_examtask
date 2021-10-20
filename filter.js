@@ -7,7 +7,7 @@
     ratingButton.addEventListener("click", () => {
         const ratingInputValue = parseInt(ratingInput.value);
         const ratings = document.querySelectorAll("[data-rating]");
-        if(ratingInputValue > 0 && ratingInputValue <= 5) {
+        if(ratingInputValue >= 0 && ratingInputValue <= 5) {
             ratings.forEach(rating => {
                 rating.style.display = parseFloat(rating.getAttribute("data-rating")) >= ratingInputValue ? "" : "none";
                 
