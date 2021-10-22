@@ -1,23 +1,46 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Shop by Hanna Tylna</title>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div>
-            <input id="rating" type="number" value="0" max="5" min="0">
-            <button id="ratingBtn">Filter by Raiting</button>
+
+        <div id="shopName">
+            <h2>Magic products</h2>
         </div>
-        <div id="totalSum">
-            <p id="totalSumParagragh">Total: 0</p>
+
+        <div id="filter">
+            <div id="filterInput">
+                <input id="rating" type="text" placeholder="Input a number 0-5">
+            </div>
+            <div id="filterButton">
+                <button id="ratingBtn">Filter by Raiting</button>
+            </div>
         </div>
-        <div>
-            <h3 id="cartHeader"></h3>
-            <ol id="shoppingCartList"></ol>
+
+        <div id="shoppingCart">
+            <div id="totalSum">
+                <p id="totalSumParagragh" onclick="showCart()" ondblclick="hideCart()">Total: 0</p>
+            </div>
+            <div id="shoppingCartParagragh" style="display: none;">
+                <h3 id="cartHeader"></h3>
+                <ol id="shoppingCartList"></ol>
+            </div>
         </div>
+
         <div id="products"></div>
 
         <script src="index.js"></script>
         <script src="filter.js"></script>
+        <script>
+            function showCart(){
+                document.getElementById("shoppingCartParagragh").style.display = "";
+            }
+            function hideCart(){
+                document.getElementById("shoppingCartParagragh").style.display = "none";
+            }
+        </script>
     </body>
 </html>
