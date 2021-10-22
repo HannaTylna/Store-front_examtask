@@ -1,0 +1,76 @@
+body {
+    background-color: lightblue;
+    display: block;
+}
+#shopName {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#shopName h2 {
+    color: AliceBlue;
+    background: #21108E;
+    border-radius: 20px;
+    font-size: 32px;
+    font-family: cursive;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 2px double aliceblue;
+    padding: 10px;
+}
+#rating {
+    position: relative;;
+}
+button {
+    background-color: mistyrose;
+}
+#filter {
+    border-style: double;
+    border: 2px double aliceblue;
+    background-color: gainsboro;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 0 30px 0 0;
+    float: right;
+}
+#filterInput {
+    margin: 10px;
+}
+#filterButton {
+    margin: 10px;
+    padding: 0 22px;
+}
+#ratingBtn {
+    border: 2px double aliceblue;
+    border-radius: 10px;
+    padding: 5px;
+}
+#shoppingCart {
+    position: sticky;
+    float: left;
+    border-style: double;
+    border: 2px double aliceblue;
+    background-color: gainsboro;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 0 0 0 20px;
+}
+/* #shoppingCartParagragh {
+    display: none;
+} */
+#products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+}
+.product {
+    width: 30%;
+}
+.product img {
+    width: 30%;
+    height: auto;
+}
