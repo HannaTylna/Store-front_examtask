@@ -5,7 +5,7 @@
     const ratingButton = document.getElementById("ratingBtn");
 
     ratingButton.addEventListener("click", () => {
-        const ratingInputValue = parseInt(ratingInput.value);
+        const ratingInputValue = parseFloat(ratingInput.value);
         const ratings = document.querySelectorAll("[data-rating]");
         if(ratingInputValue >= 0 && ratingInputValue <= 5) {
             ratings.forEach(rating => {
