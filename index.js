@@ -9,76 +9,93 @@
     const shoppingListContainer = document.getElementById("shoppingCartList");
     const productListContainer = document.getElementById("products");
 
-    function createProductName(productItem){
-        const elName = document.createElement("h2");
-        elName.innerHTML = productItem.name;
-        return elName
-    }
-
-    function createProductImage(productItem){
-        const elImage = document.createElement("img");
-        elImage.src = productItem.images[0].src["small"];
-        elImage.alt = productItem.images[0]["alt"];
-        elImage.width = "500";
-        return elImage
-    }
-
-    function createEl(html){
+    function createEl(html,idName){
         const el = document.createElement("p");
+        el.setAttribute("class", idName);
         el.innerHTML = html;
         return el;
     } 
 
     function createElementDescription(productItem){
-        return createEl(productItem.description);
+        const idName = "productDescription";
+        return createEl(productItem.description, idName);
     }
 
     function createElementPrice(productItem){
+        const idName = "productPrice";
         const elPrice = `Price: ${productItem.price}`;
-        return createEl(elPrice);
+        return createEl(elPrice, idName);
     }
 
     function createElementRating(productItem){
+        const idName = "productRating";
         const elRating = `Rating: ${productItem.rating || "0"}`;
-        return createEl(elRating);
+        return createEl(elRating, idName);
     }
 
     function createElementStock(productItem){
+        const idName = "productStock";
         const elStock = `Stock: ${productItem.stock}`;
-        return createEl(elStock);
+        return createEl(elStock, idName);
+    }
+
+    function createProductName(productItem){
+        const elName = document.createElement("h2");
+        elName.setAttribute("class", "productName");
+        elName.innerHTML = productItem.name;
+        return elName
+    }
+
+
+    function clickOn (html, productItem){
+        html.addEventListener("click", () =>{
+            if(productItem.stock > 0){
+                cartHeader.innerText = "Shopping cart";
+                cartHeader.style="align-items: center; display: flex; justify-content: center; align-items: center";
+                customer.addPurchase({name: productItem.name, price: productItem.price});
+                customer.outputPurchaseInformation();
+            } else {
+                alert("The product of stock out.")
+            }
+        })
+    }
+
+    function createProductImage(productItem){
+        const elImage = document.createElement("img");
+        elImage.setAttribute("class", "productImage");
+        elImage.src = productItem.images[0].src["small"];
+        elImage.alt = productItem.images[0]["alt"];
+        elImage.width = "400";
+
+        clickOn(elImage, productItem);
+        
+        return elImage
     }
 
     function createButtonBuy(productItem){
         const button = document.createElement("button");
-       /*  button.setAttribute("style", "border-style: none"); */ // required if the image acts as a button
-        button.innerText = "Buy"; // Not required if the image acts as a button
+        button.innerText = "Buy"; 
 
-        button.addEventListener("click", () => {
-            cartHeader.innerText = "Shopping cart";
-            if(productItem.stock > 0)
-            customer.addPurchase({name: productItem.name, price: productItem.price});
-            customer.outputPurchaseInformation();
-        })
-        /* button.appendChild(createProductImage(productItem)); */ // required if the image acts as a button
+        clickOn(button, productItem);
         
         return button
     }
 
     function renderProductItem(productItem){
         const productItemElement = document.createElement("div");
+        productItemElement.setAttribute("class", "product");
         productItemElement.setAttribute("data-rating", productItem.rating || 0);
         const br = document.createElement("br");
         const hr = document.createElement("hr");
 
         productItemElement.appendChild(createProductName(productItem));
-        /* productItemElement.appendChild(createButtonBuy(productItem));  */// required if the image acts as a button
-        productItemElement.appendChild(createProductImage(productItem)); // Not required if the image acts as a button
+        productItemElement.appendChild(createProductImage(productItem)); 
         productItemElement.appendChild(createElementDescription(productItem));
         productItemElement.appendChild(br);
         productItemElement.appendChild(createElementPrice(productItem));
         productItemElement.appendChild(createElementRating(productItem));
         productItemElement.appendChild(createElementStock(productItem));
-        productItemElement.appendChild(createButtonBuy(productItem));// Not required if the image acts as a button
+        productItemElement.appendChild(createButtonBuy(productItem));
         productItemElement.appendChild(hr);
 
         productListContainer.appendChild(productItemElement);
@@ -125,7 +142,7 @@
             const purchase = this.getLatestPurchase();
 
             totalSumParagragh.innerHTML = `Total: ${this.getTotalSpent()}`
-            shoppingListParagragh.innerHTML += `${purchase.name} - ${purchase.price} <br> <br>`;
+            shoppingListParagragh.innerHTML += `${purchase.name} - ${purchase.price} <br>`;
             
             totalSum.appendChild(totalSumParagragh);
             shoppingListContainer.appendChild(shoppingListParagragh);
@@ -135,4 +152,3 @@
     const customer = new Customer();
 
 })()
-
