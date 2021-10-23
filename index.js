@@ -9,34 +9,34 @@
     const shoppingListContainer = document.getElementById("shoppingCartList");
     const productListContainer = document.getElementById("products");
 
-    function createEl(html,idName){
+    function createEl(html,className){
         const el = document.createElement("p");
-        el.setAttribute("class", idName);
+        el.setAttribute("class", className);
         el.innerHTML = html;
         return el;
     } 
 
     function createElementDescription(productItem){
-        const idName = "productDescription";
-        return createEl(productItem.description, idName);
+        const className = "productDescription";
+        return createEl(productItem.description, className);
     }
 
     function createElementPrice(productItem){
-        const idName = "productPrice";
-        const elPrice = `Price: ${productItem.price}`;
-        return createEl(elPrice, idName);
+        const className = "productPrice";
+        const elPrice = `<strong>Price:</strong> ${productItem.price}`;
+        return createEl(elPrice, className);
     }
 
     function createElementRating(productItem){
-        const idName = "productRating";
-        const elRating = `Rating: ${productItem.rating || "0"}`;
-        return createEl(elRating, idName);
+        const className = "productRating";
+        const elRating = `<strong>Rating:</strong> ${productItem.rating || "0"}`;
+        return createEl(elRating, className);
     }
 
     function createElementStock(productItem){
-        const idName = "productStock";
-        const elStock = `Stock: ${productItem.stock}`;
-        return createEl(elStock, idName);
+        const className = "productStock";
+        const elStock = `<strong>Stock:</strong>: ${productItem.stock}`;
+        return createEl(elStock, className);
     }
 
     function createProductName(productItem){
@@ -74,6 +74,7 @@
 
     function createButtonBuy(productItem){
         const button = document.createElement("button");
+        button.setAttribute("class", "buttonBuy")
         button.innerText = "Buy"; 
 
         clickOn(button, productItem);
@@ -86,7 +87,6 @@
         productItemElement.setAttribute("class", "product");
         productItemElement.setAttribute("data-rating", productItem.rating || 0);
         const br = document.createElement("br");
-        const hr = document.createElement("hr");
 
         productItemElement.appendChild(createProductName(productItem));
         productItemElement.appendChild(createProductImage(productItem)); 
@@ -96,7 +96,6 @@
         productItemElement.appendChild(createElementRating(productItem));
         productItemElement.appendChild(createElementStock(productItem));
         productItemElement.appendChild(createButtonBuy(productItem));
-        productItemElement.appendChild(hr);
 
         productListContainer.appendChild(productItemElement);
     }
@@ -141,8 +140,8 @@
             const shoppingListParagragh = document.createElement("li");
             const purchase = this.getLatestPurchase();
 
-            totalSumParagragh.innerHTML = `Total: ${this.getTotalSpent()}`
-            shoppingListParagragh.innerHTML += `${purchase.name} - ${purchase.price} <br>`;
+            totalSumParagragh.innerHTML = `Total: ${this.getTotalSpent()} kr  Antal: ${this.purchases.length} st`
+            shoppingListParagragh.innerHTML += `${purchase.name} ${purchase.price} kr<br>`;
             
             totalSum.appendChild(totalSumParagragh);
             shoppingListContainer.appendChild(shoppingListParagragh);

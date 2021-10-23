@@ -23,7 +23,7 @@ body {
     position: relative;;
 }
 button {
-    background-color: mistyrose;
+    background-color: AliceBlue;
 }
 #filter {
     border-style: double;
@@ -42,35 +42,79 @@ button {
     padding: 0 22px;
 }
 #ratingBtn {
-    border: 2px double aliceblue;
+    border: 2px double #000;
     border-radius: 10px;
     padding: 5px;
+    font-weight: bold;
 }
 #shoppingCart {
-    position: sticky;
     float: left;
     border-style: double;
     border: 2px double aliceblue;
     background-color: gainsboro;
     border-radius: 20px;
-    padding: 10px;
     margin: 0 0 0 20px;
+    position: sticky;
+    top: 0;
+    padding: 5px;
+    width: 15%;
 }
-/* #shoppingCartParagragh {
-    display: none;
-} */
+
 #products {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
     width: 90%;
-    margin: auto;
+    display: flex;
+    align-items: stretch;
+    padding: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px auto auto;
 }
 .product {
+    height: 450px;
+    text-align: center;
     width: 30%;
+    margin: 10px auto auto;
+    padding: 10px;
+    border: 2px double aliceblue;
+    background-color: gainsboro;
+    border-radius: 20px;
 }
-.product img {
+
+.productName {
+    font-size: 18px;
+    letter-spacing: 0.1em;
+    word-spacing: 0.2em;
+}
+
+.productImage {
+    width: auto;
+    height: 30%;
+}
+.productDescription {
+    height: 40px;
+}
+.productPrice {
     width: 30%;
-    height: auto;
+    border-bottom: 2px double aliceblue;
+    padding: 5px;
+    margin: 10px auto auto;
+}
+.productRating {
+    width: 30%;
+    border-bottom: 2px double aliceblue;
+    padding: 5px;
+    margin: 10px auto auto;
+}
+.productStock {
+    width: 30%;
+    border-bottom: 2px double aliceblue;
+    padding: 5px;
+    margin: 10px auto auto;
+}
+.buttonBuy {
+    margin-top: 10px;
+    border: 2px double #000;
+    border-radius: 10px;
+    padding: 5px 15px;
+    font-weight: bold;
 }
