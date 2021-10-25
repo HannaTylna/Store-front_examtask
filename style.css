@@ -59,6 +59,11 @@ button {
     padding: 5px;
     width: 15%;
 }
+#totalSum{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 #products {
     width: 90%;

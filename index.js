@@ -140,8 +140,8 @@
             const shoppingListParagragh = document.createElement("li");
             const purchase = this.getLatestPurchase();
 
-            totalSumParagragh.innerHTML = `Total: ${this.getTotalSpent()} kr  Antal: ${this.purchases.length} st`
-            shoppingListParagragh.innerHTML += `${purchase.name} ${purchase.price} kr<br>`;
+            totalSumParagragh.innerHTML = `<strong>Total:</strong> ${this.getTotalSpent()} kr  <strong>Antal:</strong> ${this.purchases.length} st`
+            shoppingListParagragh.innerHTML += `${purchase.name} - ${purchase.price} kr<br>`;
             
             totalSum.appendChild(totalSumParagragh);
             shoppingListContainer.appendChild(shoppingListParagragh);
